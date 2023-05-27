@@ -16,17 +16,17 @@ def buscar_candidato():
     while 1==1:# foi criado um loop para sempre rodar o programa até que o usuário decida encerrar 
         #no fim de cada consulta
         print(menu)
-        entrevistM = int(input("Digite a nota mínima da entrevista: "))
-        teoricoM = int(input("Digite a nota mínima do teste teórico: "))
-        praticoM = int(input("Digite a nota mínima do teste prático: "))
-        softM = int(input("Digite a nota mínima da avaliação soft skills: "))
+        nota_entrevista = int(input("Digite a nota mínima da entrevista: "))
+        nota_teorico = int(input("Digite a nota mínima do teste teórico: "))
+        nota_prarico = int(input("Digite a nota mínima do teste prático: "))
+        nota_soft = int(input("Digite a nota mínima da avaliação soft skills: "))
         
         candidatos_disponiveis = [] #vou adicionar os candidatos nessa lista que tem os critérios 
                                     #pedidos no imput
         for i in resultados:
             nome, notas = i
             e, t, p, s = notas.split('_')
-            if int(e[1:]) >= entrevistM and int(t[1:]) >= teoricoM and int(p[1:]) >= praticoM and int(s[1:]) >= softM:
+            if int(e[1:]) >= nota_entrevista and int(t[1:]) >= nota_teorico and int(p[1:]) >= nota_prarico and int(s[1:]) >= nota_soft:
                 candidatos_disponiveis.append(i)
         print(resultadoP)
         for candidato in candidatos_disponiveis:
