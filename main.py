@@ -31,7 +31,7 @@ def buscar_candidato():
         print(resultadoP)
         for candidato in candidatos_disponiveis:
             nome, notas = candidato
-            print(nome + " " + notas)
+            print(f"{nome}   {notas}")
         resposta = input("Quer fazer uma nova consulta?(s)para sim e(n)para não: ")
         if resposta == "n":
             break
