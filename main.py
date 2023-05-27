@@ -33,17 +33,28 @@ def buscar_candidato():
             nome, notas = candidato
             print(f"{nome}   {notas}")
         resposta = input("Quer fazer uma nova consulta?(s)para sim e(n)para não: ")
+        resposta = resposta.lower()
+     
+        while resposta!= "s"and resposta!="n":
+            resposta = input("Resposta invalida: (s)para sim e(n)para não: ")
+            resposta = resposta.lower  
         if resposta == "n":
             break
-        resposta2 = input("Deseja adicionar um novo candidato?(s)para sim e(n)para não: ")
-        if resposta2 == "s":
-            
-            nomeCandidato = input("Digite o nome do novo candidato: ")
-            entrevistaCandidato = input("Digite a nota da entrevista do novo candidato: ")
-            teoricoCandidato = input("Digite a nota do teste teórico do novo candidato: ")
-            praticoCandidato = input("Digite a nota do teste prático do novo candidato: ")
-            softCandidato = input("Digite a nota da avaliação soft skills do novo candidato: ")
-           # resultados.append([nomeCandidato, f"e{entrevistaCandidato}_t{teoricoCandidato}_p{praticoCandidato}_s{softCandidato}"])
+         
+        if resposta == "s":
+            resposta2 = input("Deseja adicionar um novo candidato?(s)para sim e(n)para não: ")
+            resposta2 = resposta2.lower()
+            while resposta2 != "s"and resposta2 != "n":
+                resposta2 = input("Resposta invalida: (s)para sim e(n)para não: ")
+            resposta2 = resposta2.lower()
+            if resposta2 == "s":
+                    
+                nomeCandidato = input("Digite o nome do novo candidato: ")
+                entrevistaCandidato = input("Digite a nota da entrevista do novo candidato: ")
+                teoricoCandidato = input("Digite a nota do teste teórico do novo candidato: ")
+                praticoCandidato = input("Digite a nota do teste prático do novo candidato: ")
+                softCandidato = input("Digite a nota da avaliação soft skills do novo candidato: ")
+                # resultados.append([nomeCandidato, f"e{entrevistaCandidato}_t{teoricoCandidato}_p{praticoCandidato}_s{softCandidato}"])
 
-            adicionarCandidatos(nomeCandidato,entrevistaCandidato,teoricoCandidato,praticoCandidato,softCandidato)
+                adicionarCandidatos(nomeCandidato,entrevistaCandidato,teoricoCandidato,praticoCandidato,softCandidato)
 buscar_candidato()
