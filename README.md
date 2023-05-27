@@ -5,9 +5,10 @@ Este projeto é um programa para auxiliar na seleção de candidatos com base em
 Para desenvolver as funcionalidades fiz o uso de funções, estruturas de repetição, condicionais, uso de dicionário, e métodos como append e lower pra ajudar a resolver o problema proposto no desafio!
 --- 
 # CONTATOS
-## Linkedin
-Rafael Antonio
-https://www.linkedin.com/in/rafael-antonio-759a04241/?originalSubdomain=br
+### Linkedin
 
-## E-mail
+https://www.linkedin.com/in/rafael-antonio-759a04241/?originalSubdomain=br
+Rafael Antonio
+
+### E-mail
 ra-fa0605@hotmail.com
