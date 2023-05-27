@@ -1,38 +1,51 @@
-# lista contendo outra lista com 2 indices cada dentro com nome e notas.
-resultados = [['João', 'e4_t4_p8_s8'], ['Maria', 'e5_t5_p9_s9'], ['Pedro', 'e6_t6_p10_s10'], 
-              ['Lucas', 'e7_t7_p6_s8'], ['Ana', 'e8_t8_p7_s9'], ['Julia', 'e8_t6_p9_s10']]
-menu ="""
-###### FILTRE OS CANDIDATOS PELA NOTA ######   
- """
+resultados = [{'nome': 'João', 'notas': {'entrevista': 4, 'teorico': 4, 'pratico': 8, 'soft': 8}},
+              {'nome': 'Maria', 'notas': {'entrevista': 5, 'teorico': 5, 'pratico': 9, 'soft': 9}},
+              {'nome': 'Pedro', 'notas': {'entrevista': 6, 'teorico': 6, 'pratico': 10, 'soft': 10}},
+              {'nome': 'Lucas', 'notas': {'entrevista': 7, 'teorico': 7, 'pratico': 6, 'soft': 8}},
+              {'nome': 'Ana', 'notas': {'entrevista': 8, 'teorico': 8, 'pratico': 7, 'soft': 9}},
+              {'nome': 'Julia', 'notas': {'entrevista': 8, 'teorico': 6, 'pratico': 9, 'soft': 10}}]
+
+menu = """
+###### FILTRE OS CANDIDATOS PELA NOTA ######
+"""
 resultadoP = """
-######## SEGUE ABAIXO A LISTA DOS CANDIDATOS #####
+######## SEGUE ABAIXO A LISTA DOS CANDIDATOS ########
 """
 
-#função criada para adicionar usuario quando usuario digita "s" na opção do loop de adicionar novo participante
-def adicionarCandidatos(nome,nE,nT,nP,nS):
-        resultados.append([nome, f"e{nE}_t{nT}_p{nP}_s{nS}"])
+# Função para adicionar um novo candidato
+def adicionarCandidato(nome, n_entrevista, n_teorico, n_pratico, n_soft):
+    novo_candidato = {'nome': nome, 'notas': {'entrevista': n_entrevista, 'teorico': n_teorico, 'pratico': n_pratico, 'soft': n_soft}}
+    resultados.append(novo_candidato)
+
+def formatar_notas(notas):
+    return f"e{notas['entrevista']}_t{notas['teorico']}_p{notas['pratico']}_s{notas['soft']}"
 
 def buscar_candidato():
-    while 1==1:# foi criado um loop para sempre rodar o programa até que o usuário decida encerrar 
-        #no fim de cada consulta
+    while True:
         print(menu)
         nota_entrevista = int(input("Digite a nota mínima da entrevista: "))
         nota_teorico = int(input("Digite a nota mínima do teste teórico: "))
-        nota_prarico = int(input("Digite a nota mínima do teste prático: "))
+        nota_pratico = int(input("Digite a nota mínima do teste prático: "))
         nota_soft = int(input("Digite a nota mínima da avaliação soft skills: "))
-        
-        candidatos_disponiveis = [] #vou adicionar os candidatos nessa lista que tem os critérios 
-                                    #pedidos no imput
-        for i in resultados:
-            nome, notas = i
-            e, t, p, s = notas.split('_')
-            if int(e[1:]) >= nota_entrevista and int(t[1:]) >= nota_teorico and int(p[1:]) >= nota_prarico and int(s[1:]) >= nota_soft:
-                candidatos_disponiveis.append(i)
+
+        candidatos_disponiveis = []
+        for candidato in resultados:
+            nome = candidato['nome']
+            notas = candidato['notas']
+            if (notas['entrevista'] >= nota_entrevista and notas['teorico'] >= nota_teorico and
+                notas['pratico'] >= nota_pratico and notas['soft'] >= nota_soft):
+                candidatos_disponiveis.append(candidato)
+
         print(resultadoP)
         for candidato in candidatos_disponiveis:
-            nome, notas = candidato
-            print(f"{nome}   {notas}")
-        resposta = input("Quer fazer uma nova consulta?(s)para sim e(n)para não: ")
+            nome = candidato['nome']
+            notas = candidato['notas']
+            notas_formatadas = formatar_notas(notas)
+            print(f"{nome}   {notas_formatadas}")
+
+        resposta = input("Quer fazer uma nova consulta? (s) para sim e (n) para não: ").lower()
+        while resposta != "s" and resposta != "n":
+            resposta = input("Quer fazer uma nova consulta?(s)para sim e(n)para não: ")
         resposta = resposta.lower()
      
         while resposta!= "s"and resposta!="n":
@@ -50,11 +63,13 @@ def buscar_candidato():
             if resposta2 == "s":
                     
                 nomeCandidato = input("Digite o nome do novo candidato: ")
-                entrevistaCandidato = input("Digite a nota da entrevista do novo candidato: ")
-                teoricoCandidato = input("Digite a nota do teste teórico do novo candidato: ")
-                praticoCandidato = input("Digite a nota do teste prático do novo candidato: ")
-                softCandidato = input("Digite a nota da avaliação soft skills do novo candidato: ")
+                entrevistaCandidato = int(input("Digite a nota da entrevista do novo candidato: "))
+                teoricoCandidato = int(input("Digite a nota do teste teórico do novo candidato: "))
+                praticoCandidato = int(input("Digite a nota do teste prático do novo candidato: "))
+                softCandidato = int(input("Digite a nota da avaliação soft skills do novo candidato: "))
                 # resultados.append([nomeCandidato, f"e{entrevistaCandidato}_t{teoricoCandidato}_p{praticoCandidato}_s{softCandidato}"])
 
-                adicionarCandidatos(nomeCandidato,entrevistaCandidato,teoricoCandidato,praticoCandidato,softCandidato)
+                adicionarCandidato(nomeCandidato,entrevistaCandidato,teoricoCandidato,praticoCandidato,softCandidato)
 buscar_candidato()
+
+
